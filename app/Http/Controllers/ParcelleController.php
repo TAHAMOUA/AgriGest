@@ -13,4 +13,8 @@ class ParcelleController extends Controller
 
         return view('parcelles.index', compact('parcelles'));
     }
+    public function show(Parcelle $parcelle)
+{
+    return view('parcelles.show', compact('parcelle'));
+}
 }
