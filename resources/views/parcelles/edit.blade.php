@@ -33,62 +33,7 @@
             @csrf
             @method('PUT')
 
-            <div class="mb-3">
-                <label class="form-label">Nom</label>
-                <input
-                    type="text"
-                    name="nom"
-                    class="form-control"
-                    value="{{ $parcelle->nom }}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Culture</label>
-                <input
-                    type="text"
-                    name="culture"
-                    class="form-control"
-                    value="{{ $parcelle->culture }}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Superficie</label>
-                <input
-                    type="number"
-                    step="0.01"
-                    name="superficie"
-                    class="form-control"
-                    value="{{ $parcelle->superficie }}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Date de plantation</label>
-                <input
-                    type="date"
-                    name="date_plantation"
-                    class="form-control"
-                    value="{{ $parcelle->date_plantation }}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Statut</label>
-
-                <select name="statut" class="form-select">
-
-                    <option value="En cours"
-                        {{ $parcelle->statut == 'En cours' ? 'selected' : '' }}>
-                        En cours
-                    </option>
-
-                    <option value="Récoltée"
-                        {{ $parcelle->statut == 'Récoltée' ? 'selected' : '' }}>
-                        Récoltée
-                    </option>
-
-                </select>
-
-            </div>
-
+           @include('parcelles._form')
             <button type="submit" class="btn btn-warning">
                 Modifier
             </button>

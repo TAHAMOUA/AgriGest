@@ -31,37 +31,7 @@
         <form action="{{ route('parcelles.store') }}" method="POST">
 
             @csrf
-
-            <div class="mb-3">
-                <label class="form-label">Nom</label>
-                <input type="text" name="nom" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Culture</label>
-                <input type="text" name="culture" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Superficie</label>
-                <input type="number" step="0.01" name="superficie" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Date de plantation</label>
-                <input type="date" name="date_plantation" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Statut</label>
-
-                <select name="statut" class="form-select">
-                    <option value="En cours">En cours</option>
-                    <option value="Récoltée">Récoltée</option>
-                </select>
-
-            </div>
-
+             @include('parcelles._form')
             <button type="submit" class="btn btn-success">
                 Enregistrer
             </button>
