@@ -20,4 +20,16 @@ class ParcelleController extends Controller
     public function create(){
     return view('parcelles.create');
     }
+
+    public function store(Request $request){
+    Parcelle::create([
+        'nom' => $request->nom,
+        'culture' => $request->culture,
+        'superficie' => $request->superficie,
+        'date_plantation' => $request->date_plantation,
+        'statut' => $request->statut,
+    ]);
+
+    return redirect()->route('parcelles.index');
+}
 }
