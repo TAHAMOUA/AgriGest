@@ -32,4 +32,8 @@ class ParcelleController extends Controller
 
     return redirect()->route('parcelles.index');
 }
+    public function edit(Parcelle $parcelle){
+    return view('parcelles.edit', compact('parcelle'));
+    }
+    
 }
