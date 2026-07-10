@@ -31,9 +31,20 @@ class ParcelleController extends Controller
     ]);
 
     return redirect()->route('parcelles.index');
-}
+    }
     public function edit(Parcelle $parcelle){
     return view('parcelles.edit', compact('parcelle'));
     }
-    
+
+    public function update(Request $request, Parcelle $parcelle){
+    $parcelle->update([
+        'nom' => $request->nom,
+        'culture' => $request->culture,
+        'superficie' => $request->superficie,
+        'date_plantation' => $request->date_plantation,
+        'statut' => $request->statut,
+    ]);
+
+    return redirect()->route('parcelles.index');
+}
 }
