@@ -46,5 +46,11 @@ class ParcelleController extends Controller
     ]);
 
     return redirect()->route('parcelles.index');
-}
+    }
+
+    public function destroy(Parcelle $parcelle){
+    $parcelle->delete();
+
+    return redirect()->route('parcelles.index');
+    }
 }
