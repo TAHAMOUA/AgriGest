@@ -21,7 +21,15 @@ class ParcelleController extends Controller
     return view('parcelles.create');
     }
 
-    public function store(Request $request){
+   public function store(Request $request){
+    $request->validate([
+        'nom' => 'required',
+        'culture' => 'required',
+        'superficie' => 'required|numeric',
+        'date_plantation' => 'required|date',
+        'statut' => 'required',
+    ]);
+
     Parcelle::create([
         'nom' => $request->nom,
         'culture' => $request->culture,
@@ -36,7 +44,16 @@ class ParcelleController extends Controller
     return view('parcelles.edit', compact('parcelle'));
     }
 
-    public function update(Request $request, Parcelle $parcelle){
+   public function update(Request $request, Parcelle $parcelle)
+{
+    $request->validate([
+        'nom' => 'required',
+        'culture' => 'required',
+        'superficie' => 'required|numeric',
+        'date_plantation' => 'required|date',
+        'statut' => 'required',
+    ]);
+
     $parcelle->update([
         'nom' => $request->nom,
         'culture' => $request->culture,
@@ -46,7 +63,7 @@ class ParcelleController extends Controller
     ]);
 
     return redirect()->route('parcelles.index');
-    }
+}
 
     public function destroy(Parcelle $parcelle){
     $parcelle->delete();
