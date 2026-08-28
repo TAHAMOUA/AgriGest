@@ -8,6 +8,37 @@
     Ajouter une parcelle
 </a>
 
+<form method="GET" action="{{ route('parcelles.index') }}" class="row g-3 mb-3">
+    <div class="col-md-5">
+        <input
+            type="text"
+            name="q"
+            class="form-control"
+            placeholder="Rechercher par nom ou culture..."
+            value="{{ request('q') }}">
+    </div>
+
+    <div class="col-md-3">
+        <select name="statut" class="form-select">
+            <option value="">Tous</option>
+            <option value="en culture" {{ request('statut') == 'en culture' ? 'selected' : '' }}>en culture</option>
+            <option value="récoltée" {{ request('statut') == 'récoltée' ? 'selected' : '' }}>récoltée</option>
+            <option value="en jachère" {{ request('statut') == 'en jachère' ? 'selected' : '' }}>en jachère</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+        <a href="{{ route('parcelles.index') }}" class="btn btn-secondary">Réinitialiser</a>
+    </div>
+</form>
+
+@if ($parcelles->isEmpty())
+    <div class="alert alert-info">
+        Aucune parcelle trouvée.
+    </div>
+@endif
+
 <table class="table table-bordered table-striped">
 
     <thead class="table-dark">

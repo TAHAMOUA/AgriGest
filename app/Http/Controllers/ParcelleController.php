@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 
 class ParcelleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $parcelles = Parcelle::all();
+        $q = $request->query('q');
+        $statut = $request->query('statut');
 
-        return view('parcelles.index', compact('parcelles'));
-    }
+        $parcelles = Parcelle::query()
+            ->when($q, fn ($query, $q) => $query->where(fn ($q2) =>
+                $q2->where('nom', 'like', "%{$q}%")
+                   ->orWhere('culture', 'like', "%{$q}%")
+            ))
+            ->when($statut, fn ($query, $statut) => $query->where('statut', $statut))
+            ->get();
+
+        return view('parcelles.index', compact('parcelles', 'q', 'statut'));
+    } 
+   
     public function show(Parcelle $parcelle){
     return view('parcelles.show', compact('parcelle'));
     }
